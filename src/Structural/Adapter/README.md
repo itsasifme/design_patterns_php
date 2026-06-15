@@ -23,8 +23,8 @@
 
 ## 🎯 Overall Concept
 
-### 🧠 Core Philosophy
-The Adapter pattern embodies the principle of **interface harmonization** - enabling communication between incompatible components without modifying their source code.
+### 🎨 Visual Metaphor
+> Think of it as a **universal power adapter** - you plug an incompatible device into the adapter, and suddenly it works with your electrical outlet!
 
 ### ⚡ How It Works
 - **Interface Translation**: Converts one interface to another expected format
@@ -32,25 +32,34 @@ The Adapter pattern embodies the principle of **interface harmonization** - enab
 - **Non-invasive Integration**: Works with existing code unchanged
 - **Two Implementation Styles**: Object-based (composition) or Class-based (inheritance)
 
-### 🎨 Visual Metaphor
-> Think of it as a **universal power adapter** - you plug an incompatible device into the adapter, and suddenly it works with your electrical outlet!
+## 🔨 GoF Implementation Steps
 
-## ✨ Benefits & Advantages
+### 📋 Step-by-Step Implementation Guide
 
-### 🚀 Integration & Compatibility
-- 🔌 **Legacy System Integration**: Connect old code to new systems
-- 🌐 **Third-party Library Integration**: Use external APIs seamlessly
-- 🔗 **Interface Standardization**: Create uniform contracts across diverse implementations
+#### **Step 1: Identify the Target Interface**
+Define the interface that clients expect to work with. This becomes the contract that the adapter must implement.
 
-### 🎯 Design & Maintenance
-- 📝 **Non-invasive Integration**: No need to modify original classes
-- 🛡️ **Separation of Concerns**: Keeps domain logic separate from adaptation logic
-- 🔄 **Reusability**: Single adapter can work with multiple clients
+#### **Step 2: Identify the Adaptee (Incompatible Class)**
+Identify the existing class that has an incompatible interface. This is the legacy or third-party code that you cannot modify.
 
-### 💡 Flexibility & Scalability
-- 🎭 **Multiple Implementation Patterns**: Choose between object or class adapters
-- 📦 **Loose Coupling**: Clients depend on adapted interface, not implementations
-- 🔧 **Easy Maintenance**: Changes to original classes don't affect clients
+#### **Step 3: Create the Adapter**
+Implement the adapter that converts the adaptee's interface to the target interface. Choose between:
+- **Object Adapter (Composition)**: Contains an instance of the adaptee
+- **Class Adapter (Inheritance)**: Extends the adaptee class
+
+#### **Step 4: Use the Adapter**
+Client code works exclusively with the target interface through the adapter, remaining unaware of the adaptee.
+
+### 🎯 Key Implementation Principles
+
+| **Principle** | **Description** | **Benefit** |
+|--------------|-----------------|-----------|
+| **Single Responsibility** | Adapter handles only interface conversion | Easy to maintain |
+| **Preserve Original** | Don't modify adaptee class | Safe integration |
+| **Hide Complexity** | Client sees only target interface | Clean API |
+| **Two-way Conversion** | Some adapters support bidirectional mapping | Flexible reuse |
+
+---
 
 ## 🎯 Problems Solved
 
@@ -111,36 +120,7 @@ The Adapter pattern embodies the principle of **interface harmonization** - enab
 | **Support Multiple** | ✅ Many sources | ❌ Single source |
 | **Testability** | ✅ Easy to mock | 🟡 Harder to mock |
 
-## 🔨 GoF Implementation Steps
-
-### 📋 Step-by-Step Implementation Guide
-
-#### **Step 1: Identify the Target Interface**
-Define the interface that clients expect to work with. This becomes the contract that the adapter must implement.
-
-#### **Step 2: Identify the Adaptee (Incompatible Class)**
-Identify the existing class that has an incompatible interface. This is the legacy or third-party code that you cannot modify.
-
-#### **Step 3: Create the Adapter**
-Implement the adapter that converts the adaptee's interface to the target interface. Choose between:
-- **Object Adapter (Composition)**: Contains an instance of the adaptee
-- **Class Adapter (Inheritance)**: Extends the adaptee class
-
-#### **Step 4: Use the Adapter**
-Client code works exclusively with the target interface through the adapter, remaining unaware of the adaptee.
-
-### 🎯 Key Implementation Principles
-
-| **Principle** | **Description** | **Benefit** |
-|--------------|-----------------|-----------|
-| **Single Responsibility** | Adapter handles only interface conversion | Easy to maintain |
-| **Preserve Original** | Don't modify adaptee class | Safe integration |
-| **Hide Complexity** | Client sees only target interface | Clean API |
-| **Two-way Conversion** | Some adapters support bidirectional mapping | Flexible reuse |
-
----
-
-## 📊 Real-world Example: Flight Fare API
+##  Real-world Example: Flight Fare API
 
 ### 🎯 Problem Statement
 
@@ -153,26 +133,67 @@ Your modern PHP application uses a clean JSON-based architecture for flight fare
 
 **Challenge**: Use this legacy service without rewriting your modern codebase or polluting the domain logic with format conversion code.
 
-### 💻 Raw Pseudo Code (Before Adaptation)
+### ⚠️ The Problem Without Adapter
 
+Without the adapter pattern, you'd be forced to pollute your business logic with format conversion code scattered throughout:
+
+```php
+// ❌ BAD: Mixing business logic with service-specific parsing
+class FlightFareProcessor
+{
+    public function displayFare($dataSource): void
+    {
+        // Type-checking nightmare begins...
+        if ($dataSource instanceof AmadeusSoapService) {
+            $xml = $dataSource->getLowFareSearchXml();  // Legacy method
+            $fare = parseXmlAndExtractFare($xml);       // Custom parsing logic
+        } elseif ($dataSource instanceof SabreService) {
+            $xml = $dataSource->getQuoteXml();          // Different method!
+            $fare = parseQuoteXmlAndExtractFare($xml);  // More custom logic
+        } elseif ($dataSource instanceof KayakService) {
+            $json = $dataSource->searchFlights();       // Yet another API!
+            $fare = extractFareFromJson($json);         // Even more logic
+        } else {
+            $fare = $dataSource->fetchFareJson();       // Finally the clean case
+        }
+        
+        // ... rest of business logic ...
+    }
+}
 ```
-// PROBLEM: Two incompatible interfaces
 
-// Legacy Service (What we have)
-$legacy = new AmadeusSoapService();
-$xmlData = $legacy->getLowFareSearchXml();  // Returns XML in SOAP format
-// Output: <soap:Envelope>...<BaseFare>350</BaseFare>...</soap:Envelope>
+**The Real Problems:**
+- 📌 **One class doing too many things**: Parsing Amadeus XML, Sabre XML, Kayak JSON, AND business logic
+- 📌 **Violates Open/Closed Principle**: Adding each new service requires modifying this class (risky!)
+- 📌 **Violates Single Responsibility**: Converting formats is NOT the responsibility of business logic
+- 📌 **Hard to test**: You need to mock multiple service types with their specific formats
+- 📌 **Code duplication**: Similar parsing logic is repeated for each service variant
+- 📌 **Unmaintainable**: The class grows uncontrollably as more services are added
 
-// Client Expected Interface (What we need)
-$processor = new FlightFareProcessor();
-$processor->displayFare($dataSource);  // Expects object with fetchFareJson()
-// Expected: {"base_fare": 350, "taxes": 75.50, "currency": "EUR"}
+### ✅ **The Solution: Adapter Pattern Implementation**
 
-// ❌ Without Adapter: These don't match!
-// Legacy: getLowFareSearchXml() returns XML
-// Client: expects fetchFareJson() returns JSON
-// We need something to BRIDGE this gap!
-```
+See the actual working implementation in this repository:
+
+**1. Shared Components** (`src/Structural/Adapter/`)
+- [FlightFareDataSourceInterface.php](FlightFareDataSourceInterface.php) - Target interface
+- [AmadeusSoapService.php](AmadeusSoapService.php) - Legacy service
+- [FlightFareProcessor.php](FlightFareProcessor.php) - Client code
+
+**2. Object Adapter** (Composition-based)
+- [ObjectAdapter/AmadeusFareAdapter.php](ObjectAdapter/AmadeusFareAdapter.php) - Wraps legacy service
+- [demo/ObjectAdapterDemo.php](../demo/ObjectAdapterDemo.php) - See it working
+
+**3. Class Adapter** (Inheritance-based)
+- [ClassAdapter/AmadeusFareAdapter.php](ClassAdapter/AmadeusFareAdapter.php) - Extends legacy service
+- [demo/ClassAdapterDemo.php](../demo/ClassAdapterDemo.php) - See it working
+
+**Key Benefits of This Implementation:**
+- ✅ `FlightFareProcessor` stays clean - only 5 lines!
+- ✅ Each class has ONE reason to change
+- ✅ Add new services by creating new adapters (no modification to existing code)
+- ✅ Type safe - adapters implement expected interface
+- ✅ Easily testable and mockable
+- ✅ Logic is reusable and isolated
 
 ### 🏗️ Implementation Architecture
 
@@ -197,32 +218,6 @@ Adapter (AmadeusFareAdapter)
     ↑ extends
 Adaptee (AmadeusSoapService)
 ```
-
-### ✅ Main Solution Implementation
-
-Our implementation includes:
-
-**1. Target Interface** (`FlightFareDataSourceInterface.php`)
-- Defines the expected contract
-- Standardizes data format (JSON with fare details)
-
-**2. Legacy Service** (`AmadeusSoapService.php`)
-- Unchanged existing code
-- Returns XML in SOAP format
-- Demonstrates real-world legacy service
-
-**3. Adapter** (`AmadeusFareAdapter.php`) - Available in two variants:
-- **Object Adapter** (`ObjectAdapter/AmadeusFareAdapter.php`): Uses composition
-- **Class Adapter** (`ClassAdapter/AmadeusFareAdapter.php`): Uses inheritance
-
-**4. Client Code** (`FlightFareProcessor.php`)
-- Works exclusively with target interface
-- Completely unaware of legacy service details
-- Clean, maintainable business logic
-
-**5. Demo Files**:
-- `ObjectAdapterDemo.php` - Shows object adapter pattern
-- `ClassAdapterDemo.php` - Shows class adapter pattern
 
 ### 📈 Output Example
 
