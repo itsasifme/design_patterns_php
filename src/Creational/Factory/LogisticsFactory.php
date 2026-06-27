@@ -1,9 +1,6 @@
 <?php
 
-namespace DesignPatterns\Creational\FactoryMethod\WithFactory;
-
-use DesignPatterns\Creational\FactoryMethod\ITransport;
-
+namespace DesignPatterns\Creational\Factory;
 
 /**
  * Abstract creator class that declares the factory method.
@@ -37,9 +34,9 @@ abstract class LogisticsFactory
      * Factory method to create a transport instance.
      * Concrete subclasses must implement this method.
      *
-     * @return ITransport
+     * @return TransportInterface
      */
-    abstract public function createTransport(): ITransport;
+    abstract public function createTransport(): TransportInterface;
 
     /**
      * Get logistics type name.

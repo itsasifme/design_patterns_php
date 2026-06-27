@@ -1,12 +1,12 @@
 <?php
 
-namespace DesignPatterns\Creational\FactoryMethod;
+namespace DesignPatterns\Creational\Factory;
 
 /**
  * Transport interface that all concrete transports must implement.
  * Represents the Product in Factory Method pattern.
  */
-interface ITransport
+interface TransportInterface
 {
     /**
      * Deliver goods to the specified destination.

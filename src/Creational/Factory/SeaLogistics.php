@@ -1,9 +1,6 @@
 <?php
 
-namespace DesignPatterns\Creational\FactoryMethod\WithFactory;
-
-use DesignPatterns\Creational\FactoryMethod\Ship;
-use DesignPatterns\Creational\FactoryMethod\ITransport;
+namespace DesignPatterns\Creational\Factory;
 
 /**
  * Concrete creator for sea logistics.
@@ -14,7 +11,7 @@ class SeaLogistics extends LogisticsFactory
     /**
      * {@inheritDoc}
      */
-    public function createTransport(): ITransport
+    public function createTransport(): TransportInterface
     {
         return new Ship();
     }

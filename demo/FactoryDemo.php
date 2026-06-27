@@ -1,17 +1,14 @@
 <?php
 
-namespace DesignPatterns\Creational\FactoryMethod;
-
-use DesignPatterns\Creational\FactoryMethod\WithFactory\SeaLogistics;
-use DesignPatterns\Creational\FactoryMethod\WithFactory\RoadLogistics;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use DesignPatterns\Creational\Factory\RoadLogistics;
+use DesignPatterns\Creational\Factory\SeaLogistics;
 
 /**
  * Factory Method Pattern Demonstration - Logistics Example
  */
-class LogisticsDemo
+class FactoryDemo
 {
     /**
      * Run the logistics demonstration.
@@ -97,5 +94,5 @@ class LogisticsDemo
 }
 
 // Run the demonstration
-$demo = new LogisticsDemo();
+$demo = new FactoryDemo();
 $demo->run();

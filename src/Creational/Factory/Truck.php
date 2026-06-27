@@ -1,11 +1,11 @@
 <?php
 
-namespace DesignPatterns\Creational\FactoryMethod;
+namespace DesignPatterns\Creational\Factory;
 
 /**
  * Concrete transport product - Truck for road deliveries.
  */
-class Truck implements ITransport
+class Truck implements TransportInterface
 {
     private const CAPACITY = 10000.0; // 10 tons
     private const SPEED = 60.0; // 60 km/h average speed
