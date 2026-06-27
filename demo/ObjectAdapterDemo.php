@@ -2,9 +2,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use DesignPatterns\Structural\Adapter\ObjectAdapter\AmadeusFareAdapter;
 use DesignPatterns\Structural\Adapter\AmadeusSoapService;
 use DesignPatterns\Structural\Adapter\FlightFareProcessor;
+use DesignPatterns\Structural\Adapter\ObjectAdapter\AmadeusFareAdapter;
 
 class ObjectAdapterDemo
 {
