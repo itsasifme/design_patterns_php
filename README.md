@@ -9,7 +9,7 @@
 
 ## 📚 Overview
 
-A comprehensive collection of design patterns implemented in modern PHP 8.4. This repository serves as a learning resource for implementing proven software design solutions.
+12 classic design patterns implemented in modern PHP 8.1+, organised across three categories — Creational, Structural, and Behavioral. Every pattern ships with a dedicated runnable demo script under `demo/` and a focused `README.md` inside its own `src/` directory covering the problem it solves, the implementation, and when to use it. Real-world scenarios are used throughout (e-commerce logistics, payment gateways, user management, UI component rendering) to make each pattern concrete and relatable.
 
 ## 🏗️ Pattern Categories
 
@@ -48,20 +48,12 @@ A comprehensive collection of design patterns implemented in modern PHP 8.4. Thi
 
 ## ✨ Features
 
-### 🎯 Modern PHP 8.4
-- **Typed Properties** - Full type safety
-- **Union Types** - Flexible parameter handling
-- **Match Expressions** - Clean control structures
-- **Constructor Property Promotion** - Concise class definitions
-- **Readonly Properties** - Immutable data structures
-- **PSR-12 Compliance** - Industry standard coding style
-- **Documentation** - Detailed explanations and examples
-
-### 📚 Learning Focused
-- **Clean Examples** - Easy-to-understand implementations
-- **Real-world Use Cases** - Practical application scenarios
-- **Best Practices** - Professional implementation tips
-- **Anti-pattern Warnings** - Common mistakes to avoid
+- **Real-world scenarios** — every pattern is grounded in a practical domain (logistics, payments, user management, UI rendering)
+- **Before & after comparisons** — each pattern README shows the problem without the pattern, then the clean solution with it
+- **Runnable demos** — one standalone script per pattern under `demo/`, executable with a single `php` command
+- **Per-pattern documentation** — dedicated `README.md` inside each `src/` directory covering intent, structure, trade-offs, and when to avoid
+- **Consistent interface contracts** — all abstractions are backed by explicit interfaces, making the role of each component clear
+- **Pattern comparison table** — side-by-side complexity and use-case comparison across all 12 patterns
 
 ## 🎓 Learning Path
 
@@ -95,7 +87,7 @@ A comprehensive collection of design patterns implemented in modern PHP 8.4. Thi
 
 | Pattern | Type | Complexity | Use Case | Key Feature | When to Use |
 |---------|------|------------|----------|-------------|-------------|
-| **Observer** | Behavioral | ⭐⭐⭐☆☆ | Event handling | Publish-subscribe mechanism | When objects need to be notified of changes |
+| **Observer** | Behavioral | ⭐⭐☆☆☆ | Event handling | Publish-subscribe mechanism | When objects need to be notified of changes |
 | **Strategy** | Behavioral | ⭐⭐☆☆☆ | Algorithm selection | Interchangeable algorithms | When need to select algorithm at runtime |
 | **Command** | Behavioral | ⭐⭐☆☆☆ | Action encapsulation | Encapsulate requests as objects | When need to parameterize objects with operations |
 | **Chain of Responsibility** | Behavioral | ⭐⭐⭐☆☆ | Request handling | Pass request along chain | When multiple objects may handle a request |
