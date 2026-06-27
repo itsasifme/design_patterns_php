@@ -1,9 +1,9 @@
 <?php
 
-use DesignPatterns\Creational\Singleton\Inheritance\Logger;
-use DesignPatterns\Creational\Singleton\Inheritance\Database;
-
 require_once __DIR__ . '/../vendor/autoload.php';
+
+use DesignPatterns\Creational\Singleton\Trait\Logger;
+use DesignPatterns\Creational\Singleton\Trait\Database;
 
 /**
  * Demonstration class for Singleton Inheritance pattern.
@@ -215,7 +215,7 @@ class SingletonInheritanceDemo
         try {
             new Database();
             echo "❌ Unexpected success - constructor should be protected\n";
-        } catch (\Error $e) {
+        } catch (Error $e) {
             echo "✅ Caught exception: " . $e->getMessage() . "\n";
         }
     }
@@ -232,7 +232,7 @@ class SingletonInheritanceDemo
         try {
             new Logger();
             echo "❌ Unexpected success - constructor should be protected\n";
-        } catch (\Error $e) {
+        } catch (Error $e) {
             echo "✅ Caught exception: " . $e->getMessage() . "\n";
         }
     }

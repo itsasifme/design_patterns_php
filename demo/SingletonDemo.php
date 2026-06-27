@@ -2,8 +2,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use RuntimeException;
 use DesignPatterns\Creational\Singleton\Singleton;
+
+
 
 /**
  * Singleton Pattern Demonstration Class
@@ -146,7 +147,7 @@ class SingletonDemo
         try {
             $newInstance = new Singleton();
             echo "Unexpected success ✗\n";
-        } catch (\Error $e) {
+        } catch (Error $e) {
             echo "Caught exception: " . $e->getMessage() . " ✓\n";
         }
     }
@@ -189,7 +190,7 @@ class SingletonDemo
             }
         } catch (RuntimeException $e) {
             echo "Caught exception: " . $e->getMessage() . " ✓\n";
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "Caught exception: " . $e->getMessage() . " ✓\n";
         }
     }

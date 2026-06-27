@@ -1,9 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use DesignPatterns\Creational\Singleton\Trait\Logger;
 use DesignPatterns\Creational\Singleton\Trait\Database;
-
-require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
  * Demonstration of Database and Logger using SingletonTrait.
@@ -148,7 +148,7 @@ class SingletonTraitDemo
             
             $logger->info('Integration test completed successfully');
             
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $logger->error('Integration test failed: ' . $e->getMessage());
             throw $e;
         }
