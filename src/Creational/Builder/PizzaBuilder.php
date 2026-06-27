@@ -1,12 +1,12 @@
 <?php
 
-namespace DesignPatterns\Creational\Builder\WithBuilder;
+namespace DesignPatterns\Creational\Builder;
 
 /**
  * Concrete builder for creating custom pizzas.
  * Follows Open/Closed Principle - open for extension, closed for modification.
  */
-class PizzaBuilder implements IPizzaBuilder
+class PizzaBuilder implements PizzaBuilderInterface
 {
     /** @var PizzaSize The pizza size */
     private PizzaSize $size;

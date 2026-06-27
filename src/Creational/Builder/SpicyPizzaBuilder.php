@@ -1,15 +1,15 @@
 <?php
 
-namespace DesignPatterns\Creational\Builder\WithBuilder;
+namespace DesignPatterns\Creational\Builder;
 
 /**
  * Concrete builder for creating Spicy pizzas.
  * Follows Liskov Substitution and Dependency Inversion Principles.
  */
-class SpicyPizzaBuilder implements IPizzaBuilder
+class SpicyPizzaBuilder implements PizzaBuilderInterface
 {
-    /** @var IPizzaBuilder The internal builder instance */
-    private IPizzaBuilder $builder;
+    /** @var PizzaBuilderInterface The internal builder instance */
+    private PizzaBuilderInterface $builder;
     
     /** @var array<Topping> Allowed toppings for Spicy pizza */
     private const ALLOWED_TOPPINGS = [
@@ -24,9 +24,9 @@ class SpicyPizzaBuilder implements IPizzaBuilder
     /**
      * Constructor with dependency injection.
      *
-     * @param IPizzaBuilder $builder The builder instance to use
+     * @param PizzaBuilderInterface $builder The builder instance to use
      */
-    public function __construct(IPizzaBuilder $builder)
+    public function __construct(PizzaBuilderInterface $builder)
     {
         $this->builder = $builder;
         $this->reset();

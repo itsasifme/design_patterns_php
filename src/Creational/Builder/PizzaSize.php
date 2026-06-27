@@ -1,6 +1,6 @@
 <?php
 
-namespace DesignPatterns\Creational\Builder\WithBuilder;
+namespace DesignPatterns\Creational\Builder;
 
 enum PizzaSize: string
 {

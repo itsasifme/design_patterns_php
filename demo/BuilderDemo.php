@@ -1,13 +1,18 @@
 <?php
 
-namespace DesignPatterns\Creational\Builder\WithBuilder;
-
 require_once __DIR__ . '/../vendor/autoload.php';
+
+use DesignPatterns\Creational\Builder\Director;
+use DesignPatterns\Creational\Builder\HawaiianPizzaBuilder;
+use DesignPatterns\Creational\Builder\PizzaBuilder;
+use DesignPatterns\Creational\Builder\PizzaSize;
+use DesignPatterns\Creational\Builder\SpicyPizzaBuilder;
+use DesignPatterns\Creational\Builder\Topping;
 
 /**
  * Builder Pattern Demonstration
  */
-class WithBuilderDemo
+class BuilderDemo
 {
     /**
      * Run the builder pattern demonstration.
@@ -152,5 +157,5 @@ class WithBuilderDemo
 }
 
 // Run the demonstration
-$demo = new WithBuilderDemo();
+$demo = new BuilderDemo();
 $demo->run();

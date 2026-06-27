@@ -3,141 +3,159 @@
 > **The Master Craftsman of Object Creation** • Construct Complex Objects Step by Step
 
 ![Design Pattern](https://img.shields.io/badge/Pattern-Creational-FF6B6B?style=for-the-badge)
-![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?style=for-the-badge)
-![SOLID](https://img.shields.io/badge/SOLID-Compliant-blue?style=for-the-badge)
-![PSR-12](https://img.shields.io/badge/PSR--12-Compliant-brightgreen?style=for-the-badge)
+![PHP Compatible](https://img.shields.io/badge/PHP-8.4+-purple?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 ## 🌟 Overview
 
-| **Aspect** | **Description** |
-|------------|-----------------|
-| **Pattern Type** | Creational |
-| **Purpose** | Construct complex objects step by step, separating construction from representation |
-| **Complexity** | ⭐⭐☆☆☆ |
-| **Popularity** | ⭐⭐⭐⭐☆ |
+| **Aspect**       | **Description**                                                              |
+|------------------|------------------------------------------------------------------------------|
+| **Pattern Type** | Creational                                                                   |
+| **Purpose**      | Separate the construction of a complex object from its representation        |
+| **Complexity**   | ⭐⭐☆☆☆                                                                      |
+| **Popularity**   | ⭐⭐⭐⭐☆                                                                     |
 
 ## 📖 Definition
 
 > **"The Architectural Director of Object Construction"** 🎬
-> 
-> **Builder** design pattern lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+>
+> The **Builder** pattern separates the construction of a complex object from its representation, so the same construction process can create different representations.
 
 ## 🎯 Overall Concept
 
-### 🧠 Core Philosophy
-The Builder pattern embodies the principle of **controlled construction** - breaking down complex object creation into manageable steps while maintaining flexibility and readability.
+### 🎨 Visual Metaphor
+> Think of a **custom pizza chef** 🍕. You specify each ingredient step by step (crust → sauce → cheese → toppings), and the chef assembles your perfect pizza exactly as ordered. The same chef (builder) can produce a different pizza by varying the steps.
 
 ### ⚡ How It Works
-- **Step-by-Step Construction**: Build objects through a series of method calls
-- **Separation of Concerns**: Decouples construction logic from the product itself
-- **Fluent Interface**: Method chaining for readable, expressive code
-- **Director Optional**: Can use a Director for predefined construction recipes
-- **Multiple Representations**: Same construction process can create different products
+- **Step-by-Step Construction**: Product is assembled through a series of discrete method calls
+- **Same Process, Different Results**: Concrete builders follow the same interface but produce different products
+- **Director (Optional)**: A Director class encodes predefined construction recipes
+- **Separation of Concerns**: Construction logic lives in the builder, not in the product or client
 
-### 🎨 Visual Metaphor
-> Think of it as a **custom pizza chef** - you specify each ingredient step by step (crust, sauce, cheese, toppings), and the chef constructs your perfect pizza exactly how you want it!
+## 🔨 GoF Implementation Steps
 
-## ✨ Benefits & Advantages
+### 📋 Step-by-Step Implementation Guide
 
-### 🚀 Flexibility & Control
-- 🎯 **Granular Control**: Precise control over each construction step
-- ⚡ **Customizable**: Create objects with varying configurations easily
-- 📦 **Reusable Builders**: Same builder can create different object variations
-- 🔄 **Immutable Products**: Final products are immutable and thread-safe
+#### **Step 1: Define the Builder Interface**
+Declare an interface listing all the construction steps available. Every step builds one part of the product.
 
-### 🔧 Maintainability & Readability
-- 🛡️ **Clean Code**: Fluent interface makes code readable and expressive
-- 🔒 **Separation of Concerns**: Construction logic separated from business logic
-- 📋 **Testable**: Easy to test each construction step independently
-- 🌐 **Extensible**: Easy to add new construction steps or variations
+#### **Step 2: Create Concrete Builders**
+Implement one ConcreteBuilder per product variant. Each provides its own version of every step and exposes a `getResult()` method to retrieve the finished product.
 
-### 🎯 Practical Advantages
-- 🌐 **Complex Object Creation**: Handles objects with many parameters gracefully
-- 🏗️ **Director Pattern**: Optional director provides construction recipes
-- 🔄 **Step Validation**: Validate each step before proceeding to next
-- 🎨 **Multiple Representations**: Create different products from same process
+#### **Step 3: Define the Product**
+Products built by different builders do not need a common interface — each ConcreteBuilder returns its own product type from `getResult()`.
 
-## 🎯 Problems Solved
+#### **Step 4: Create the Director (Optional)**
+Create a Director that takes a builder and calls its steps in a specific order to produce a predefined product configuration. The Director hides construction details from clients.
 
-### 🚫 Constructor Overload
-- **Too Many Parameters**: Avoids constructors with many optional parameters
-- **Telescoping Constructors**: Eliminates the need for multiple constructor versions
-- **Parameter Confusion**: Prevents parameter ordering mistakes
+#### **Step 5: Use the Builder**
+Client code creates a ConcreteBuilder, optionally passes it to a Director, then calls `getResult()` on the builder to obtain the assembled product.
 
-### 🌐 Complex Object Creation
-- **Multi-step Initialization**: Objects requiring complex setup procedures
-- **Validation During Construction**: Validate steps before final object creation
-- **Optional Components**: Objects with many optional parts or features
+### ⚙️ Core Rules
 
-### ⚡ Readability Issues
-- **Unreadable Instantiation**: Complex object creation becomes readable and expressive
-- **Construction Documentation**: Each step is clearly documented and intentional
-- **Configuration Clarity**: Clear what each construction step is doing
+- **Builder Interface**: Declares all construction steps.
+- **ConcreteBuilder**: Implements the steps; tracks the product; provides `getResult()`.
+- **Product**: The complex object being assembled; may vary per ConcreteBuilder.
+- **Director**: Knows the order of steps; works with any builder through the Builder interface.
+- **Client**: Creates a ConcreteBuilder, optionally uses a Director, and retrieves the product from the builder.
+
+### 🎯 Key Implementation Principles
+
+| **Principle**               | **Description**                                           | **Benefit**                         |
+|-----------------------------|-----------------------------------------------------------|-------------------------------------|
+| **Separation of Concerns**  | Construction logic in builder, not in product or client   | Clean, maintainable code            |
+| **Same Interface**          | All builders share one interface                          | Director is decoupled from product  |
+| **Step Isolation**          | Each step builds exactly one part                         | Easy to vary individual steps       |
+| **Reusable Recipes**        | Director encodes construction recipes independently       | Consistent, repeatable builds       |
+
+---
 
 ## 📊 When to Use Builder
 
 ### ✅ Ideal Use Cases
-| **Scenario** | **Why Builder?** |
-|--------------|-------------------|
-| **Complex Objects** | Objects with many parameters or configuration options |
-| **Step-by-Step Construction** | Objects requiring ordered construction steps |
-| **Multiple Variations** | Need to create different representations of same object |
-| **Immutable Objects** | When you want immutable objects with complex construction |
-| **Fluent Interfaces** | When you want readable, expressive object creation |
-
-### 🎯 Decision Checklist
-- ✔️ Does the object have more than 4-5 constructor parameters?
-- ✔️ Are there multiple optional parameters?
-- ✔️ Is the object construction process complex or multi-step?
-- ✔️ Do you need to create different variations of the same object?
-- ✔️ Would readable construction code improve maintainability?
+| **Scenario**                   | **Why Builder?**                                              |
+|--------------------------------|---------------------------------------------------------------|
+| **Complex Objects**            | Objects with many optional or ordered construction steps      |
+| **Multiple Representations**   | Same construction process, different product types            |
+| **Immutable Products**         | Build all parts before sealing the object                     |
+| **Telescoping Constructors**   | Replace a constructor with 10+ parameters with fluent steps   |
+| **Reusable Construction Flows**| Director encodes standard configurations                      |
 
 ## ⚠️ When to Avoid
 
 ### 🚫 Anti-Pattern Scenarios
-- ❌ **Simple Objects**: For objects with few parameters (use regular constructors)
-- ❌ **Performance-Critical**: When builder overhead is unacceptable
-- ❌ **Over-Engineering**: Don't use for simple object creation needs
-- ❌ **Tight Coupling**: When builder would create tight coupling without benefit
+- ❌ **Simple objects** — objects with one or two required parameters do not need a builder
+- ❌ **No variation needed** — if only one representation exists, the pattern adds overhead
+- ❌ **Performance-critical creation** — builder overhead is measurable in tight loops
+- ❌ **Over-engineering** — do not add a Director for simple construction flows
 
-### 🔄 Better Alternatives
-- **Factory Method** - For simpler object creation needs
-- **Constructor** - For objects with few required parameters
-- **Dependency Injection** - For injecting dependencies rather than building
+---
 
-## 🆚 Pattern Comparison
+## 🚨 Real-world Example: Pizza Order System
 
-### 🔄 Builder vs. Factory
-| **Aspect** | **Builder** | **Factory** |
-|------------|---------------|-------------|
-| **Construction** | Step-by-step process | Single method call |
-| **Complexity** | Handles complex objects | Handles simpler objects |
-| **Control** | Fine-grained control | Less control over process |
-| **Readability** | Very readable (fluent) | Less readable for complex objects |
-| **Use Case** | Many parameters/variations | Simple object creation |
+### 🎯 Problem Statement
 
-### 🏭 Builder vs. Constructor
-| **Aspect** | **Builder** | **Constructor** |
-|------------|---------------|-------------|
-| **Parameters** | Handles many parameters | Limited parameters |
-| **Optional Args** | Excellent support | Poor support |
-| **Readability** | Very readable | Can be confusing |
-| **Validation** | Step-by-step validation | All-at-once validation |
-| **Flexibility** | Highly flexible | Inflexible |
+Your application builds customisable pizzas. A pizza has a size, crust, sauce, and up to a dozen optional toppings. The naive approach is a single constructor with a parameter for every option — the classic **telescoping constructor** anti-pattern.
 
-## 🏁 Conclusion
+---
 
-The **Builder Pattern** is like a **precision toolkit** for object creation - incredibly powerful for complex construction scenarios, providing control, readability, and flexibility where simple constructors fall short.
+### ⚠️ The Problem Without Builder
 
-### 🎯 Perfect For:
-- Complex objects with many parameters
-- Step-by-step object construction
-- Creating multiple object variations
-- Readable, maintainable object creation code
-- Immutable object construction
+```php
+// ❌ BAD: Telescoping constructor — every option is a positional parameter
 
-### 🔧 Remember:
-> **"Build with intention, not confusion"** - use the Builder pattern when object construction complexity warrants the additional structure, but avoid over-engineering simple scenarios.
+class Pizza
+{
+    public function __construct(
+        string $size = 'medium',
+        bool $cheese = false,
+        bool $pepperoni = false,
+        bool $bacon = false,
+        bool $mushrooms = false,
+        bool $pineapple = false,
+        bool $jalapenos = false,
+        array $extraToppings = []
+    ) { /* ... */ }
+}
+
+// ❌ Can you tell what toppings this pizza has?
+$pizza = new Pizza('large', true, false, true, false, true, false, ['olives']);
+```
+
+**The Real Problems:**
+- 📌 **Unreadable call sites** — `new Pizza('large', true, false, true, false, true, false, [])` is impossible to read without counting parameters
+- 📌 **Easy to swap booleans** — mixing up pepperoni and bacon positions causes silent bugs
+- 📌 **Cannot add options later** — every new topping extends the constructor and breaks every existing call
+- 📌 **No partial construction** — you must pass all values at once even when building the order step by step
+
+---
+
+### ✅ The Solution: Builder Pattern Implementation
+
+See the actual working implementation in this repository:
+
+**Components** (`src/Creational/Builder/`)
+- [PizzaBuilderInterface.php](PizzaBuilderInterface.php) — Builder interface listing all construction steps
+- [PizzaBuilder.php](PizzaBuilder.php) — Concrete Builder (custom pizza)
+- [HawaiianPizzaBuilder.php](HawaiianPizzaBuilder.php) — Concrete Builder (Hawaiian preset)
+- [SpicyPizzaBuilder.php](SpicyPizzaBuilder.php) — Concrete Builder (spicy preset)
+- [Pizza.php](Pizza.php) — Product assembled by the builders
+- [Director.php](Director.php) — Director encoding preset pizza recipes
+- [PizzaSize.php](PizzaSize.php), [Topping.php](Topping.php) — Enums
+
+**Demo**
+- [demo/BuilderDemo.php](../../../demo/BuilderDemo.php) — See all scenarios working
+
+**Key Benefits of This Implementation:**
+- ✅ Fluent, readable construction — `setSize()->addTopping()->addTopping()` is self-documenting
+- ✅ No invalid intermediate states — `Pizza` only returned from `getResult()` after all steps
+- ✅ Director reuse — `makeHawaiianPizza()` and `makeSpicyPizza()` work with any compatible builder
+- ✅ Easy to extend — add a new topping step without touching existing clients
+- ✅ Swappable builders — Director works with any `PizzaBuilderInterface` implementation
+
+### 🏁 Conclusion
+
+The **Builder Pattern** is like a **precision toolkit** for object assembly — indispensable when a complex object must be constructed in steps and the same process should support multiple representations without polluting the client with a wall of positional parameters.
 
 ---
 
@@ -145,6 +163,6 @@ The **Builder Pattern** is like a **precision toolkit** for object creation - in
 
 **⭐ If this documentation helped you, please give it a star!**
 
-*"Master patterns, master code."* 🚀
+*"Separate construction from representation, master complex creation."* 🚀
 
 </div>
