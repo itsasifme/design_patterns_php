@@ -3,6 +3,6 @@
 namespace DesignPatterns\Creational\AbstractFactory;
 
 // Abstract product interfaces
-interface ICheckbox {
+interface CheckboxInterface {
     public function render(): void;
 }

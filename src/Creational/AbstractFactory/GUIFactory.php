@@ -4,6 +4,6 @@ namespace DesignPatterns\Creational\AbstractFactory;
 
 // Abstract Factory interface
 interface GUIFactory {
-    public function createButton(): IButton;
-    public function createCheckbox(): ICheckbox;
+    public function createButton(): ButtonInterface;
+    public function createCheckbox(): CheckboxInterface;
 }

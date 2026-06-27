@@ -4,10 +4,10 @@ namespace DesignPatterns\Creational\AbstractFactory;
 
 // Concrete factories
 class WindowsFactory implements GUIFactory {
-    public function createButton(): IButton {
+    public function createButton(): ButtonInterface {
         return new WindowsButton();
     }
-    public function createCheckbox(): ICheckbox {
+    public function createCheckbox(): CheckboxInterface {
         return new WindowsCheckbox();
     }
 }

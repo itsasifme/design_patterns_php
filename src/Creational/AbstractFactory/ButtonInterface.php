@@ -3,6 +3,6 @@
 namespace DesignPatterns\Creational\AbstractFactory;
 
 // Abstract product interfaces
-interface IButton {
+interface ButtonInterface {
     public function render(): void;
 }

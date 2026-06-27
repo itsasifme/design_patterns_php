@@ -3,10 +3,10 @@
 namespace DesignPatterns\Creational\AbstractFactory;
 
 class MacFactory implements GUIFactory {
-    public function createButton(): IButton {
+    public function createButton(): ButtonInterface {
         return new MacButton();
     }
-    public function createCheckbox(): ICheckbox {
+    public function createCheckbox(): CheckboxInterface {
         return new MacCheckbox();
     }
 }
