@@ -19,26 +19,23 @@ A comprehensive collection of design patterns implemented in modern PHP 8.4. Thi
 - **✅ Singleton** - Ensure a class has only one instance
 - **✅ Factory Method** - Create objects without specifying exact class
 - **✅ Abstract Factory** - Create families of related objects
-- **🔜 Builder** - Construct complex objects step by step
-- **🔜 Prototype** - Create new objects by copying existing ones
+- **✅ Builder** - Construct complex objects step by step
 
 ### 🏛️ Structural Patterns
 *Concerned with the composition of classes and objects*
 
-- **🔜 Adapter** - Allows incompatible interfaces to work together
-- **🔜 Bridge** - Separate abstraction from implementation
-- **🔜 Composite** - Treat individual objects and compositions uniformly
-- **🔜 Decorator** - Add responsibilities to objects dynamically
-- **🔜 Facade** - Provide a simplified interface to a complex system
+- **✅ Adapter** - Allows incompatible interfaces to work together
+- **✅ Decorator** - Add responsibilities to objects dynamically
+- **✅ Facade** - Provide a simplified interface to a complex system
+- **✅ Proxy** - Control access to an object via a surrogate
 
 ### 🎭 Behavioral Patterns
 *Concerned with interaction between objects*
 
-- **🔜 Observer** - Define dependency between objects
-- **🔜 Strategy** - Define a family of algorithms
-- **🔜 Command** - Encapsulate a request as an object
-- **🔜 Iterator** - Access elements of a collection sequentially
-- **🔜 State** - Allow object to alter behavior when state changes
+- **✅ Observer** - Define dependency between objects
+- **✅ Strategy** - Define a family of algorithms
+- **✅ Command** - Encapsulate a request as an object
+- **✅ Chain of Responsibility** - Pass a request along a chain of handlers
 
 ### Directory Structure
 ```
@@ -63,27 +60,16 @@ A comprehensive collection of design patterns implemented in modern PHP 8.4. Thi
 ### 📚 Learning Focused
 - **Clean Examples** - Easy-to-understand implementations
 - **Real-world Use Cases** - Practical application scenarios
-- **Comparison Guides** - Pattern differences explained
 - **Best Practices** - Professional implementation tips
 - **Anti-pattern Warnings** - Common mistakes to avoid
 
 ## 🎓 Learning Path
 
-### Beginner → Advanced
-1. **Start with Creational Patterns** (Singleton, Factory)
-2. **Move to Structural Patterns** (Adapter, Decorator)
-3. **Explore Behavioral Patterns** (Observer, Strategy)
-4. **Study Pattern Combinations** (how patterns work together)
-5. **Understand Trade-offs** (when to use which pattern)
-
 ### Recommended Study Order
-1. Singleton → Factory Method → Abstract Factory
-2. Adapter → Decorator → Facade
-3. Observer → Strategy → Command
-4. Composite → Iterator → State
+1. Singleton → Builder → Factory → Abstract Factory
+2. Adapter → Decorator → Facade → Proxy
+3. Strategy →  Observer → Command  → Chain of Responsibility
 
-
-Here's the complete Pattern Comparison Guide in markdown format:
 
 ## 📊 Design Pattern Comparison Guide
 
@@ -95,18 +81,14 @@ Here's the complete Pattern Comparison Guide in markdown format:
 | **Factory Method** | Creational | ⭐⭐☆☆☆ | Object creation | Subclass decides | When class doesn't know exact object type |
 | **Abstract Factory** | Creational | ⭐⭐⭐☆☆ | Families of objects | Product families | When system needs multiple product families |
 | **Builder** | Creational | ⭐⭐☆☆☆ | Complex objects | Step-by-step construction | When object has many optional parameters |
-| **Prototype** | Creational | ⭐⭐☆☆☆ | Object cloning | Copy existing instances | When object creation is expensive |
 
 ### Structural Patterns
 
 | Pattern | Type | Complexity | Use Case | Key Feature | When to Use |
 |---------|------|------------|----------|-------------|-------------|
 | **Adapter** | Structural | ⭐⭐☆☆☆ | Interface compatibility | Wrapper for compatibility | When integrating incompatible interfaces |
-| **Bridge** | Structural | ⭐⭐⭐☆☆ | Abstraction separation | Decouple abstraction from implementation | When abstraction and implementation vary independently |
-| **Composite** | Structural | ⭐⭐☆☆☆ | Tree structures | Part-whole hierarchies | When clients treat individual objects and compositions uniformly |
 | **Decorator** | Structural | ⭐⭐☆☆☆ | Dynamic responsibilities | Add functionality dynamically | When need to add responsibilities to objects without subclassing |
 | **Facade** | Structural | ⭐☆☆☆☆ | Simplified interface | Unified interface to subsystem | When need simple interface to complex subsystem |
-| **Flyweight** | Structural | ⭐⭐⭐☆☆ | Memory efficiency | Share objects to reduce memory | When large numbers of similar objects needed |
 | **Proxy** | Structural | ⭐⭐☆☆☆ | Object access control | Surrogate or placeholder | When need to control access to an object |
 
 ### Behavioral Patterns
@@ -116,13 +98,7 @@ Here's the complete Pattern Comparison Guide in markdown format:
 | **Observer** | Behavioral | ⭐⭐⭐☆☆ | Event handling | Publish-subscribe mechanism | When objects need to be notified of changes |
 | **Strategy** | Behavioral | ⭐⭐☆☆☆ | Algorithm selection | Interchangeable algorithms | When need to select algorithm at runtime |
 | **Command** | Behavioral | ⭐⭐☆☆☆ | Action encapsulation | Encapsulate requests as objects | When need to parameterize objects with operations |
-| **Iterator** | Behavioral | ⭐⭐☆☆☆ | Collection traversal | Sequential access to elements | When need to access collection elements without exposing structure |
-| **State** | Behavioral | ⭐⭐⭐☆☆ | State-dependent behavior | Object behavior changes with state | When object behavior depends on its state |
-| **Template Method** | Behavioral | ⭐⭐☆☆☆ | Algorithm skeleton | Define algorithm skeleton | When common algorithm structure with varying steps |
-| **Visitor** | Behavioral | ⭐⭐⭐⭐☆ | Operations on objects | Separate operations from objects | When need to add operations without changing classes |
 | **Chain of Responsibility** | Behavioral | ⭐⭐⭐☆☆ | Request handling | Pass request along chain | When multiple objects may handle a request |
-| **Mediator** | Behavioral | ⭐⭐⭐☆☆ | Object communication | Centralized communication | When objects communicate in complex ways |
-| **Memento** | Behavioral | ⭐⭐☆☆☆ | State saving | Capture and restore state | When need to save and restore object state |
 
 
 ## 📖 Documentation
@@ -134,12 +110,10 @@ Each pattern includes comprehensive documentation:
 - **Implementation** - Code structure and examples
 - **When to Use** - Appropriate scenarios
 - **When to Avoid** - Anti-pattern warnings
-- **Comparisons** - Differences with similar patterns
 
 ## 🌟 Why This Repository?
 
 ### ✅ Professional Grade
-- Production-ready code
 - PSR-12 compliant
 - Well documented
 
@@ -172,26 +146,11 @@ We welcome contributions! Please see our contributing guidelines:
 - Performance optimizations
 - Test coverage expansion
 
-## 🏆 Best Practices
-
-### Code Quality
-- **Type Safety** - Strict typing throughout
-- **Error Handling** - Comprehensive exception management
-- **Documentation** - PHPDoc for all methods
-- **Testing** - Full test coverage
-
-### Design Principles
-- **SOLID Principles** - Applied where appropriate
-- **DRY Code** - No unnecessary duplication
-- **KISS** - Keep implementations simple
-- **YAGNI** - Only implement what's needed
-
 ## 📚 Resources
 
 ### Recommended Reading
 - **Design Patterns: Elements of Reusable Object-Oriented Software** (Gang of Four)
-- **Head First Design Patterns**
-- **Refactoring Guru** - Online pattern references
+- **[Refactoring Guru](https://refactoring.guru/design-patterns)** - Excellent visual explanations and real-world examples for every pattern
 
 ### Useful Links
 - [PHP FIG Standards](https://www.php-fig.org/)
