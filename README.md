@@ -9,7 +9,7 @@
 
 ## 📚 Overview
 
-12 classic design patterns implemented in modern PHP 8.1+, organised across three categories — Creational, Structural, and Behavioral. Every pattern ships with a dedicated runnable demo script under `demo/` and a focused `README.md` inside its own `src/` directory covering the problem it solves, the implementation, and when to use it. Real-world scenarios are used throughout (e-commerce logistics, payment gateways, user management, UI component rendering) to make each pattern concrete and relatable.
+12 classic design patterns implemented in modern PHP 8.4, organised across three categories — Creational, Structural, and Behavioral. Every pattern ships with a dedicated runnable demo script under `demo/` and a focused `README.md` inside its own `src/` directory covering the problem it solves, the implementation, and when to use it. Real-world scenarios are used throughout (e-commerce logistics, payment gateways, user management, UI component rendering) to make each pattern concrete and relatable.
 
 ## 🏗️ Pattern Categories
 
@@ -105,11 +105,8 @@ Each pattern includes comprehensive documentation:
 
 ## 🌟 Why This Repository?
 
-### ✅ Professional Grade
-- PSR-12 compliant
-- Well documented
-
 ### ✅ Learning Optimized
+- Well documented
 - Clean, readable code
 - Practical examples
 - Progressive complexity
@@ -117,6 +114,7 @@ Each pattern includes comprehensive documentation:
 
 ### ✅ Modern PHP
 - PHP 8.4 features
+- PSR-12 compliant
 - Modern syntax
 - Type safety
 - Performance optimized
@@ -156,6 +154,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Gang of Four** - For the original design patterns book
+- **[Refactoring Guru](https://refactoring.guru/design-patterns)** - For excellent visual pattern explanations and real-world examples
 - **PHP Community** - For ongoing improvements and standards
 - **Contributors** - Everyone who helps improve this repository
 
